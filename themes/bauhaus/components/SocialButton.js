@@ -2,58 +2,62 @@ import { siteConfig } from '@/lib/config'
 
 /**
  * Bauhaus 社交按钮
- * 几何化图标设计
+ * 更大更显眼的设计
  */
 const SocialButton = () => {
   const socialLinks = [
-    { key: 'CONTACT_GITHUB', icon: 'github', label: 'GitHub' },
-    { key: 'CONTACT_TWITTER', icon: 'twitter', label: 'Twitter' },
-    { key: 'CONTACT_EMAIL', icon: 'email', label: 'Email' },
-    { key: 'CONTACT_BILIBILI', icon: 'bilibili', label: 'Bilibili' },
-    { key: 'CONTACT_WEIBO', icon: 'weibo', label: 'Weibo' }
+    { key: 'CONTACT_GITHUB', icon: 'fab fa-github', label: 'GitHub' },
+    { key: 'CONTACT_TWITTER', icon: 'fab fa-twitter', label: 'Twitter' },
+    { key: 'CONTACT_EMAIL', icon: 'fas fa-envelope', label: 'Email' },
+    { key: 'CONTACT_BILIBILI', icon: 'fab fa-bilibili', label: 'Bilibili' },
+    { key: 'CONTACT_WEIBO', icon: 'fab fa-weibo', label: 'Weibo' },
+    { key: 'CONTACT_TELEGRAM', icon: 'fab fa-telegram', label: 'Telegram' },
+    { key: 'CONTACT_LINKEDIN', icon: 'fab fa-linkedin', label: 'LinkedIn' },
+    { key: 'CONTACT_INSTAGRAM', icon: 'fab fa-instagram', label: 'Instagram' },
+    { key: 'CONTACT_YOUTUBE', icon: 'fab fa-youtube', label: 'YouTube' },
+    { key: 'CONTACT_XIAOHONGSHU', icon: 'fas fa-heart', label: '小红书' }
   ]
 
   const activeSocials = socialLinks.filter(s => siteConfig(s.key))
 
   if (activeSocials.length === 0) return null
 
+  // 为每个社交按钮分配颜色
+  const colors = ['#E53935', '#FDD835', '#1E88E5']
+
   return (
-    <div className='flex items-center justify-center space-x-4'>
-      {activeSocials.map(social => (
-        <a
-          key={social.key}
-          href={social.key === 'CONTACT_EMAIL' ? `mailto:${atob(siteConfig(social.key))}` : siteConfig(social.key)}
-          target='_blank'
-          rel='noopener noreferrer'
-          className='w-10 h-10 flex items-center justify-center border-2 border-[#FAFAFA] text-[#FAFAFA] hover:bg-[#FAFAFA] hover:text-[#212121] transition-colors'
-          aria-label={social.label}>
-          <SocialIcon type={social.icon} />
-        </a>
-      ))}
+    <div className='flex items-center justify-center flex-wrap gap-4'>
+      {activeSocials.map((social, index) => {
+        const color = colors[index % 3]
+        const isEmail = social.key === 'CONTACT_EMAIL'
+        const href = isEmail 
+          ? `mailto:${atob(siteConfig(social.key))}` 
+          : siteConfig(social.key)
+
+        return (
+          <a
+            key={social.key}
+            href={href}
+            target={isEmail ? '_self' : '_blank'}
+            rel='noopener noreferrer'
+            className='group flex flex-col items-center'
+            aria-label={social.label}>
+            {/* 图标按钮 */}
+            <div 
+              className='w-14 h-14 flex items-center justify-center border-2 text-[#FAFAFA] transition-all duration-300 hover:scale-110'
+              style={{ borderColor: color }}
+            >
+              <i className={`${social.icon} text-xl group-hover:scale-110 transition-transform`} />
+            </div>
+            {/* 标签 */}
+            <span className='mt-2 text-xs text-[#9E9E9E] group-hover:text-[#FAFAFA] transition-colors'>
+              {social.label}
+            </span>
+          </a>
+        )
+      })}
     </div>
   )
-}
-
-/**
- * 几何化社交图标
- */
-function SocialIcon({ type }) {
-  const iconClass = 'w-5 h-5'
-  
-  switch (type) {
-    case 'github':
-      return <i className={`fab fa-github ${iconClass}`} />
-    case 'twitter':
-      return <i className={`fab fa-twitter ${iconClass}`} />
-    case 'email':
-      return <i className={`fas fa-envelope ${iconClass}`} />
-    case 'bilibili':
-      return <i className={`fab fa-bilibili ${iconClass}`} />
-    case 'weibo':
-      return <i className={`fab fa-weibo ${iconClass}`} />
-    default:
-      return <i className={`fas fa-link ${iconClass}`} />
-  }
 }
 
 export default SocialButton

@@ -6,11 +6,14 @@ import CONFIG from '../config'
 
 /**
  * Bauhaus Hero 区域
- * 大胆的几何构图、三原色运用、不对称但平衡的布局
+ * 个人信息 + 社交媒体 + 几何构图
  */
 const Hero = props => {
   const { allNavPages } = props
   const router = useRouter()
+
+  const AUTHOR = siteConfig('AUTHOR')
+  const BIO = siteConfig('BIO')
 
   const handleRandomPost = () => {
     if (allNavPages?.length > 0) {
@@ -19,37 +22,35 @@ const Hero = props => {
     }
   }
 
-  const heroTitle = siteConfig('BAUHAUS_HERO_TITLE', 'BAUHAUS', CONFIG)
-  const heroSubtitle = siteConfig('BAUHAUS_HERO_SUBTITLE', 'Form Follows Function', CONFIG)
-  const heroDesc = siteConfig('BAUHAUS_HERO_DESCRIPTION', '形式追随功能 · 少即是多', CONFIG)
-
   return (
-    <section className='relative min-h-[80vh] flex items-center overflow-hidden bg-[#FAFAFA] dark:bg-[#212121]'>
+    <section className='relative min-h-[70vh] flex items-center overflow-hidden bg-[#FAFAFA] dark:bg-[#212121]'>
       {/* 背景几何装饰 */}
       <GeometricBackground />
 
       {/* 主内容 */}
-      <div className='relative z-10 max-w-6xl mx-auto px-6 py-20 w-full'>
+      <div className='relative z-10 max-w-6xl mx-auto px-6 py-16 w-full'>
         <div className='grid lg:grid-cols-2 gap-12 items-center'>
-          {/* 左侧文字 */}
-          <div className='space-y-8'>
-            {/* 主标题 */}
-            <h1 className='text-7xl md:text-9xl font-black tracking-tighter text-[#212121] dark:text-[#FAFAFA] leading-none'>
-              {heroTitle}
+          {/* 左侧 - 个人信息 */}
+          <div className='space-y-6'>
+            {/* 作者名称 */}
+            <h1 className='text-5xl md:text-7xl font-black tracking-tighter text-[#212121] dark:text-[#FAFAFA] leading-none'>
+              {AUTHOR}
             </h1>
 
-            {/* 副标题 */}
-            <p className='text-2xl md:text-3xl font-light tracking-wide text-[#9E9E9E] uppercase'>
-              {heroSubtitle}
-            </p>
+            {/* 简介 */}
+            {BIO && (
+              <p className='text-xl md:text-2xl text-[#9E9E9E]'>
+                {BIO}
+              </p>
+            )}
 
-            {/* 描述 */}
-            <p className='text-lg text-[#212121] dark:text-[#FAFAFA] max-w-md'>
-              {heroDesc}
-            </p>
+            {/* 社交媒体 */}
+            <div className='pt-4'>
+              <SocialLinks />
+            </div>
 
             {/* 按钮组 */}
-            <div className='flex flex-wrap gap-4'>
+            <div className='flex flex-wrap gap-4 pt-4'>
               <SmartLink href='/archive'>
                 <button className='px-8 py-4 bg-[#212121] dark:bg-[#FAFAFA] text-[#FAFAFA] dark:text-[#212121] font-bold uppercase tracking-widest hover:bg-[#1E88E5] hover:text-[#FAFAFA] transition-colors'>
                   探索文章
@@ -64,12 +65,61 @@ const Hero = props => {
           </div>
 
           {/* 右侧几何构图 */}
-          <div className='hidden lg:block relative h-[500px]'>
+          <div className='hidden lg:block relative h-[400px]'>
             <GeometricComposition />
           </div>
         </div>
       </div>
     </section>
+  )
+}
+
+/**
+ * 社交媒体链接
+ */
+function SocialLinks() {
+  const socialLinks = [
+    { key: 'CONTACT_GITHUB', icon: 'fab fa-github', label: 'GitHub', color: '#E53935' },
+    { key: 'CONTACT_TWITTER', icon: 'fab fa-twitter', label: 'Twitter', color: '#1E88E5' },
+    { key: 'CONTACT_EMAIL', icon: 'fas fa-envelope', label: 'Email', color: '#FDD835' },
+    { key: 'CONTACT_BILIBILI', icon: 'fab fa-bilibili', label: 'Bilibili', color: '#E53935' },
+    { key: 'CONTACT_WEIBO', icon: 'fab fa-weibo', label: 'Weibo', color: '#E53935' },
+    { key: 'CONTACT_TELEGRAM', icon: 'fab fa-telegram', label: 'Telegram', color: '#1E88E5' },
+    { key: 'CONTACT_LINKEDIN', icon: 'fab fa-linkedin', label: 'LinkedIn', color: '#1E88E5' },
+    { key: 'CONTACT_INSTAGRAM', icon: 'fab fa-instagram', label: 'Instagram', color: '#E53935' },
+    { key: 'CONTACT_YOUTUBE', icon: 'fab fa-youtube', label: 'YouTube', color: '#E53935' },
+    { key: 'CONTACT_XIAOHONGSHU', icon: 'fas fa-heart', label: '小红书', color: '#E53935' }
+  ]
+
+  const activeSocials = socialLinks.filter(s => siteConfig(s.key))
+
+  if (activeSocials.length === 0) return null
+
+  return (
+    <div className='flex flex-wrap gap-3'>
+      {activeSocials.map((social) => {
+        const isEmail = social.key === 'CONTACT_EMAIL'
+        const href = isEmail 
+          ? `mailto:${atob(siteConfig(social.key))}` 
+          : siteConfig(social.key)
+
+        return (
+          <a
+            key={social.key}
+            href={href}
+            target={isEmail ? '_self' : '_blank'}
+            rel='noopener noreferrer'
+            className='group flex items-center space-x-2 px-4 py-2 border-2 border-[#212121] dark:border-[#FAFAFA] hover:text-[#FAFAFA] transition-all duration-300'
+            style={{ '--hover-bg': social.color }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = social.color}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+            aria-label={social.label}>
+            <i className={`${social.icon} text-lg`} />
+            <span className='text-sm font-bold uppercase tracking-wider'>{social.label}</span>
+          </a>
+        )
+      })}
+    </div>
   )
 }
 

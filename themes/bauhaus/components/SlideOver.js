@@ -79,9 +79,11 @@ const SlideOver = ({ cRef, ...props }) => {
 
         {/* 底部几何装饰 */}
         <div className='absolute bottom-8 left-6 right-6'>
-          <div className='flex justify-center space-x-4'>
+          <div className='flex justify-center space-x-4 items-center'>
             <div className='w-8 h-8 rounded-full border-2 border-[#E53935]' />
-            <div className='w-8 h-8 border-2 border-[#FDD835]' style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }} />
+            <svg width='32' height='32' viewBox='0 0 32 32' className='text-[#FDD835]'>
+              <polygon points='16,2 30,30 2,30' fill='none' stroke='currentColor' strokeWidth='2' />
+            </svg>
             <div className='w-8 h-8 border-2 border-[#1E88E5]' />
           </div>
         </div>
