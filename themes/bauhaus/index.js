@@ -34,6 +34,7 @@ import { NoticeBar } from './components/NoticeBar'
 import PostAdjacent from './components/PostAdjacent'
 import PostHeader from './components/PostHeader'
 import { PostLock } from './components/PostLock'
+import SearchNav from './components/SearchNav'
 import SideBar from './components/SideBar'
 import CONFIG from './config'
 import { Style } from './style'
@@ -141,10 +142,16 @@ const LayoutSearch = props => {
         color='#FDD835' 
       />
       
-      {siteConfig('POST_LIST_STYLE') === 'page' ? (
-        <BlogPostListPage {...props} />
+      {!currentSearch ? (
+        <SearchNav {...props} />
       ) : (
-        <BlogPostListScroll {...props} />
+        <>
+          {siteConfig('POST_LIST_STYLE') === 'page' ? (
+            <BlogPostListPage {...props} />
+          ) : (
+            <BlogPostListScroll {...props} />
+          )}
+        </>
       )}
     </div>
   )

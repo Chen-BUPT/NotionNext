@@ -1,22 +1,34 @@
 import { siteConfig } from '@/lib/config'
 import SmartLink from '@/components/SmartLink'
+import dynamic from 'next/dynamic'
 import CONFIG from '../config'
+
+const NotionPage = dynamic(() => import('@/components/NotionPage'))
 
 /**
  * Bauhaus 侧边栏
  * 几何装饰、极简信息展示
  */
 const SideBar = props => {
-  const { latestPosts, categories, tags } = props
+  const { latestPosts, categories, tags, notice } = props
   const showLatest = siteConfig('BAUHAUS_SIDEBAR_LATEST_POSTS', true, CONFIG)
   const showCategories = siteConfig('BAUHAUS_SIDEBAR_CATEGORIES', true, CONFIG)
   const showTags = siteConfig('BAUHAUS_SIDEBAR_TAGS', true, CONFIG)
 
   return (
     <aside className='space-y-8 w-full lg:w-72'>
+      {/* 公告 */}
+      {notice && (
+        <SidebarSection title='Notice' color='#E53935'>
+          <div className='text-sm text-[#212121] dark:text-[#FAFAFA]'>
+            <NotionPage post={notice} />
+          </div>
+        </SidebarSection>
+      )}
+
       {/* 最新文章 */}
       {showLatest && latestPosts?.length > 0 && (
-        <SidebarSection title='Latest' color='#E53935'>
+        <SidebarSection title='Latest' color='#FDD835'>
           <div className='space-y-4'>
             {latestPosts.slice(0, 5).map((post, index) => (
               <SmartLink key={post.id} href={`/${post.slug}`}>
@@ -36,7 +48,7 @@ const SideBar = props => {
 
       {/* 分类 */}
       {showCategories && categories?.length > 0 && (
-        <SidebarSection title='Categories' color='#FDD835'>
+        <SidebarSection title='Categories' color='#1E88E5'>
           <div className='space-y-2'>
             {categories.slice(0, 8).map(category => (
               <SmartLink key={category.name} href={`/category/${category.name}`}>
@@ -56,7 +68,7 @@ const SideBar = props => {
 
       {/* 标签 */}
       {showTags && tags?.length > 0 && (
-        <SidebarSection title='Tags' color='#1E88E5'>
+        <SidebarSection title='Tags' color='#FDD835'>
           <div className='flex flex-wrap gap-2'>
             {tags.slice(0, 15).map(tag => (
               <SmartLink key={tag.name} href={`/tag/${tag.name}`}>
