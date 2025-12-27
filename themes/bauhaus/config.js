@@ -11,6 +11,12 @@ const CONFIG = {
   BAUHAUS_NEUTRAL_WHITE: '#FAFAFA',
   BAUHAUS_NEUTRAL_GRAY: '#9E9E9E',
 
+  // 首页顶部通知条滚动内容，如不需要可以留空 []
+  BAUHAUS_NOTICE_BAR: [
+    { title: '欢迎来到我的博客', url: '/' },
+    { title: '探索更多精彩内容', url: '/archive' }
+  ],
+
   // 首页配置
   BAUHAUS_HERO_ENABLE: true,
   BAUHAUS_HERO_TITLE: 'BAUHAUS',

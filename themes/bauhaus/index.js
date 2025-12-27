@@ -30,6 +30,7 @@ import Catalog from './components/Catalog'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Hero from './components/Hero'
+import { NoticeBar } from './components/NoticeBar'
 import PostAdjacent from './components/PostAdjacent'
 import PostHeader from './components/PostHeader'
 import { PostLock } from './components/PostLock'
@@ -55,8 +56,13 @@ const LayoutBase = props => {
       {/* 顶部导航 */}
       <Header {...props} />
 
-      {/* Hero 区域 - 仅首页 */}
-      {isHome && <Hero {...props} />}
+      {/* 通知横幅 + Hero 区域 - 仅首页 */}
+      {isHome && (
+        <>
+          <NoticeBar />
+          <Hero {...props} />
+        </>
+      )}
 
       {/* 主内容区 */}
       <main className={`flex-grow w-full ${fullWidth ? '' : 'max-w-6xl'} mx-auto px-6 py-12`}>

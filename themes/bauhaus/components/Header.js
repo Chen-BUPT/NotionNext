@@ -6,7 +6,6 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import Logo from './Logo'
 import MenuListTop from './MenuListTop'
 import SearchButton from './SearchButton'
-import DarkModeButton from './DarkModeButton'
 import SlideOver from './SlideOver'
 
 /**
@@ -65,7 +64,6 @@ const Header = props => {
           {/* 右侧工具栏 */}
           <div className='flex items-center space-x-4'>
             <SearchButton {...props} />
-            <DarkModeButton />
             
             {/* 移动端菜单按钮 - 几何图形 */}
             <button
