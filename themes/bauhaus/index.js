@@ -27,6 +27,7 @@ import BlogPostArchive from './components/BlogPostArchive'
 import BlogPostListPage from './components/BlogPostListPage'
 import BlogPostListScroll from './components/BlogPostListScroll'
 import Catalog from './components/Catalog'
+import ClickEffect from './components/ClickEffect'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Hero from './components/Hero'
@@ -53,6 +54,7 @@ const LayoutBase = props => {
   return (
     <div id='theme-bauhaus' className='min-h-screen flex flex-col bg-[#FAFAFA] dark:bg-[#212121]'>
       <Style />
+      <ClickEffect />
       
       {/* 顶部导航 */}
       <Header {...props} />

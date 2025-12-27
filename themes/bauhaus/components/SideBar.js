@@ -20,7 +20,7 @@ const SideBar = props => {
       {/* 公告 */}
       {notice && (
         <SidebarSection title='Notice' color='#E53935'>
-          <div className='text-sm text-[#212121] dark:text-[#FAFAFA]'>
+          <div className='text-sm text-[#212121] dark:text-[#FAFAFA] text-center'>
             <NotionPage post={notice} />
           </div>
         </SidebarSection>
