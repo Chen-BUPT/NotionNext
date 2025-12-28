@@ -16,7 +16,7 @@ const SideBar = props => {
   const showTags = siteConfig('BAUHAUS_SIDEBAR_TAGS', true, CONFIG)
 
   return (
-    <aside className='space-y-8 w-full lg:w-72'>
+    <aside className='space-y-6 w-full'>
       {/* 公告 */}
       {notice && (
         <SidebarSection title='Notice' color='#E53935'>
@@ -29,11 +29,11 @@ const SideBar = props => {
       {/* 最新文章 */}
       {showLatest && latestPosts?.length > 0 && (
         <SidebarSection title='Latest' color='#FDD835'>
-          <div className='space-y-4'>
+          <div className='space-y-3'>
             {latestPosts.slice(0, 5).map((post, index) => (
               <SmartLink key={post.id} href={`/${post.slug}`}>
-                <div className='group flex items-start space-x-3'>
-                  <span className='text-xs font-mono text-[#9E9E9E] mt-1'>
+                <div className='group flex items-start space-x-2'>
+                  <span className='text-xs font-mono text-[#9E9E9E] mt-0.5'>
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <span className='text-sm text-[#212121] dark:text-[#FAFAFA] group-hover:text-[#1E88E5] dark:group-hover:text-[#FDD835] transition-colors line-clamp-2'>
@@ -49,14 +49,14 @@ const SideBar = props => {
       {/* 分类 */}
       {showCategories && categories?.length > 0 && (
         <SidebarSection title='Categories' color='#1E88E5'>
-          <div className='space-y-2'>
+          <div className='space-y-1.5'>
             {categories.slice(0, 8).map(category => (
               <SmartLink key={category.name} href={`/category/${category.name}`}>
                 <div className='flex items-center justify-between group'>
-                  <span className='text-sm text-[#212121] dark:text-[#FAFAFA] group-hover:text-[#1E88E5] dark:group-hover:text-[#FDD835] transition-colors'>
+                  <span className='text-sm text-[#212121] dark:text-[#FAFAFA] group-hover:text-[#1E88E5] dark:group-hover:text-[#FDD835] transition-colors truncate'>
                     {category.name}
                   </span>
-                  <span className='text-xs font-mono text-[#9E9E9E]'>
+                  <span className='text-xs font-mono text-[#9E9E9E] ml-2'>
                     {category.count}
                   </span>
                 </div>
@@ -69,10 +69,10 @@ const SideBar = props => {
       {/* 标签 */}
       {showTags && tags?.length > 0 && (
         <SidebarSection title='Tags' color='#FDD835'>
-          <div className='flex flex-wrap gap-2'>
-            {tags.slice(0, 15).map(tag => (
+          <div className='flex flex-wrap gap-1.5'>
+            {tags.slice(0, 12).map(tag => (
               <SmartLink key={tag.name} href={`/tag/${tag.name}`}>
-                <span className='inline-block px-2 py-1 text-xs font-bold border border-[#212121] dark:border-[#FAFAFA] text-[#212121] dark:text-[#FAFAFA] hover:bg-[#212121] hover:text-[#FAFAFA] dark:hover:bg-[#FAFAFA] dark:hover:text-[#212121] transition-colors'>
+                <span className='inline-block px-2 py-0.5 text-xs font-bold border border-[#212121] dark:border-[#FAFAFA] text-[#212121] dark:text-[#FAFAFA] hover:bg-[#212121] hover:text-[#FAFAFA] dark:hover:bg-[#FAFAFA] dark:hover:text-[#212121] transition-colors'>
                   {tag.name}
                 </span>
               </SmartLink>
@@ -91,14 +91,14 @@ function SidebarSection({ title, color, children }) {
   return (
     <div className='border-2 border-[#212121] dark:border-[#FAFAFA]'>
       {/* 标题栏 */}
-      <div className='flex items-center space-x-3 p-4 border-b-2 border-[#212121] dark:border-[#FAFAFA]'>
-        <div className='w-3 h-3' style={{ backgroundColor: color }} />
-        <h3 className='text-sm font-black uppercase tracking-wider text-[#212121] dark:text-[#FAFAFA]'>
+      <div className='flex items-center space-x-2 p-3 border-b-2 border-[#212121] dark:border-[#FAFAFA]'>
+        <div className='w-2.5 h-2.5' style={{ backgroundColor: color }} />
+        <h3 className='text-xs font-black uppercase tracking-wider text-[#212121] dark:text-[#FAFAFA]'>
           {title}
         </h3>
       </div>
       {/* 内容 */}
-      <div className='p-4'>
+      <div className='p-3'>
         {children}
       </div>
     </div>

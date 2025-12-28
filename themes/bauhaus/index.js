@@ -68,9 +68,9 @@ const LayoutBase = props => {
       )}
 
       {/* 主内容区 */}
-      <main className={`flex-grow w-full ${fullWidth ? '' : 'max-w-6xl'} mx-auto px-6 py-12`}>
+      <main className={`flex-grow w-full ${fullWidth ? '' : 'max-w-7xl'} mx-auto px-6 py-12`}>
         {slotTop}
-        <div className={`${fullWidth ? '' : 'lg:flex lg:space-x-12'}`}>
+        <div className={`${fullWidth ? '' : 'lg:flex lg:space-x-8'}`}>
           {/* 主内容 */}
           <div className='flex-1 min-w-0'>
             {children}
@@ -78,7 +78,7 @@ const LayoutBase = props => {
           
           {/* 侧边栏 - 非全宽模式 */}
           {!fullWidth && (
-            <div className='hidden lg:block'>
+            <div className='hidden lg:block lg:w-60 lg:flex-shrink-0'>
               <SideBar {...props} />
             </div>
           )}
