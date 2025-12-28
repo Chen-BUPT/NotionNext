@@ -79,7 +79,9 @@ const LayoutBase = props => {
           {/* 侧边栏 - 非全宽模式 */}
           {!fullWidth && (
             <div className='hidden lg:block lg:w-60 lg:flex-shrink-0'>
-              <SideBar {...props} />
+              <div className='sticky top-20'>
+                <SideBar {...props} />
+              </div>
             </div>
           )}
         </div>
