@@ -56,22 +56,10 @@ const SelectionHighlight = () => {
       }
     }
 
-    const clearHighlight = () => {
-      if (highlightLayer) {
-        highlightLayer.innerHTML = ''
-      }
-    }
-
     document.addEventListener('selectionchange', updateHighlight)
-    document.addEventListener('mouseup', updateHighlight)
-    document.addEventListener('keyup', updateHighlight)
-    document.addEventListener('click', clearHighlight)
 
     return () => {
       document.removeEventListener('selectionchange', updateHighlight)
-      document.removeEventListener('mouseup', updateHighlight)
-      document.removeEventListener('keyup', updateHighlight)
-      document.removeEventListener('click', clearHighlight)
       highlightLayer?.remove()
     }
   }, [])
