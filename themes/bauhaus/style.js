@@ -173,18 +173,10 @@ const Style = () => {
         animation: bauhaus-pulse 2s ease-in-out infinite;
       }
 
-      /* 选中文本 - 使用下划线风格避免遮挡 */
+      /* 选中文本 - 隐藏原生背景，使用自定义下划线 */
       #theme-bauhaus ::selection {
         background: transparent;
-        color: var(--bauhaus-black);
-        text-decoration: underline;
-        text-decoration-color: var(--bauhaus-yellow);
-        text-decoration-thickness: 0.3em;
-        text-underline-offset: -0.1em;
-      }
-
-      .dark #theme-bauhaus ::selection {
-        color: var(--bauhaus-white);
+        color: inherit;
       }
     `}</style>
   )
