@@ -173,27 +173,18 @@ const Style = () => {
         animation: bauhaus-pulse 2s ease-in-out infinite;
       }
 
-      /* 选中文本 */
+      /* 选中文本 - 使用下划线风格避免遮挡 */
       #theme-bauhaus ::selection {
-        background: var(--bauhaus-yellow);
+        background: transparent;
         color: var(--bauhaus-black);
-        -webkit-background-clip: text;
-        background-clip: text;
+        text-decoration: underline;
+        text-decoration-color: var(--bauhaus-yellow);
+        text-decoration-thickness: 0.3em;
+        text-underline-offset: -0.1em;
       }
 
-      /* 确保文字始终在选中背景上方 */
-      #theme-bauhaus p,
-      #theme-bauhaus h1,
-      #theme-bauhaus h2,
-      #theme-bauhaus h3,
-      #theme-bauhaus h4,
-      #theme-bauhaus h5,
-      #theme-bauhaus h6,
-      #theme-bauhaus span,
-      #theme-bauhaus li,
-      #theme-bauhaus a {
-        position: relative;
-        z-index: 1;
+      .dark #theme-bauhaus ::selection {
+        color: var(--bauhaus-white);
       }
     `}</style>
   )
