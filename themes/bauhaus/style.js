@@ -156,7 +156,7 @@ const Style = () => {
 
       /* 正文行高，避免选中时遮挡邻行 */
       #theme-bauhaus .notion {
-        line-height: 1.6;
+        line-height: 1.5;
       }
 
       /* 动画 */
