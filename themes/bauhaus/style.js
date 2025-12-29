@@ -175,13 +175,25 @@ const Style = () => {
 
       /* 选中文本 */
       #theme-bauhaus ::selection {
-        background: rgba(253, 216, 53, 0.4);
+        background: var(--bauhaus-yellow);
         color: var(--bauhaus-black);
+        -webkit-background-clip: text;
+        background-clip: text;
       }
 
-      .dark #theme-bauhaus ::selection {
-        background: rgba(253, 216, 53, 0.5);
-        color: var(--bauhaus-black);
+      /* 确保文字始终在选中背景上方 */
+      #theme-bauhaus p,
+      #theme-bauhaus h1,
+      #theme-bauhaus h2,
+      #theme-bauhaus h3,
+      #theme-bauhaus h4,
+      #theme-bauhaus h5,
+      #theme-bauhaus h6,
+      #theme-bauhaus span,
+      #theme-bauhaus li,
+      #theme-bauhaus a {
+        position: relative;
+        z-index: 1;
       }
     `}</style>
   )
