@@ -154,6 +154,11 @@ const Style = () => {
         border: 2px solid currentColor;
       }
 
+      /* 正文行高，避免选中时遮挡邻行 */
+      #theme-bauhaus .notion {
+        line-height: 1.6;
+      }
+
       /* 动画 */
       @keyframes bauhaus-rotate {
         from { transform: rotate(0deg); }
@@ -173,17 +178,12 @@ const Style = () => {
         animation: bauhaus-pulse 2s ease-in-out infinite;
       }
 
-      /* 选中文本 */
-      #theme-bauhaus ::selection {
-        /* 先给纯色兜底，再用中间色带高亮，避免遮挡上下行 */
-        background: var(--bauhaus-yellow);
-        background: linear-gradient(
-          transparent 35%,
-          var(--bauhaus-yellow) 35%,
-          var(--bauhaus-yellow) 65%,
-          transparent 65%
-        );
-        color: var(--bauhaus-black);
+      /* 选中文本（提高优先级并兼容 Firefox） */
+      #theme-bauhaus ::selection,
+      #theme-bauhaus *::selection,
+      #theme-bauhaus *::-moz-selection {
+        background: var(--bauhaus-yellow) !important;
+        color: var(--bauhaus-black) !important;
       }
     `}</style>
   )
