@@ -175,7 +175,12 @@ const Style = () => {
 
       /* 选中文本 */
       #theme-bauhaus ::selection {
-        background: var(--bauhaus-yellow);
+        background: rgba(253, 216, 53, 0.4);
+        color: var(--bauhaus-black);
+      }
+
+      .dark #theme-bauhaus ::selection {
+        background: rgba(253, 216, 53, 0.5);
         color: var(--bauhaus-black);
       }
     `}</style>
