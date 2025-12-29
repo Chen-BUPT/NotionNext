@@ -175,12 +175,13 @@ const Style = () => {
 
       /* 选中文本 */
       #theme-bauhaus ::selection {
-        /* 用中间色带高亮，避免遮挡上下行 */
+        /* 先给纯色兜底，再用中间色带高亮，避免遮挡上下行 */
+        background: var(--bauhaus-yellow);
         background: linear-gradient(
-          transparent 30%,
-          var(--bauhaus-yellow) 30%,
-          var(--bauhaus-yellow) 70%,
-          transparent 70%
+          transparent 35%,
+          var(--bauhaus-yellow) 35%,
+          var(--bauhaus-yellow) 65%,
+          transparent 65%
         );
         color: var(--bauhaus-black);
       }
