@@ -36,7 +36,6 @@ import PostAdjacent from './components/PostAdjacent'
 import PostHeader from './components/PostHeader'
 import { PostLock } from './components/PostLock'
 import SearchNav from './components/SearchNav'
-import SelectionHighlight from './components/SelectionHighlight'
 import SideBar from './components/SideBar'
 import CONFIG from './config'
 import { Style } from './style'
@@ -56,7 +55,6 @@ const LayoutBase = props => {
     <div id='theme-bauhaus' className='min-h-screen flex flex-col bg-[#FAFAFA] dark:bg-[#212121]'>
       <Style />
       <ClickEffect />
-      <SelectionHighlight />
       
       {/* 顶部导航 */}
       <Header {...props} />

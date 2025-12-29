@@ -173,10 +173,10 @@ const Style = () => {
         animation: bauhaus-pulse 2s ease-in-out infinite;
       }
 
-      /* 选中文本 - 隐藏原生背景，使用自定义下划线 */
+      /* 选中文本 */
       #theme-bauhaus ::selection {
-        background: transparent;
-        color: inherit;
+        background: var(--bauhaus-yellow);
+        color: var(--bauhaus-black);
       }
     `}</style>
   )
